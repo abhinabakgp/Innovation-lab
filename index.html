@@ -1,1 +1,112 @@
+<!DOCTYPE HTML><html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <style>
+  
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    h2 {
+      color: #4CAF50;
+      margin-bottom: 10px;
+    }
+    h3 {
+      color: #555555;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.1em;
+      color: #333333;
+      margin: 10px 0;
+    }
+    span {
+      font-weight: bold;
+      color: #2196F3;
+      font-size: 1.3em;
+    }
+    .info-block {
+      margin-bottom: 15px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+    }
 
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Air Quality Monitoring System</h2>
+    <h3>Abhinaba, Sanjay, Arpon, Arnab</h3>
+    
+    <div class="info-block">
+      <p>Temperature</p>
+      <span id="temperature">%TEMPERATURE%</span>
+    </div>
+    
+    <div class="info-block">
+      <p>PPM (Parts per Million):</p>
+      <span id="ppm">%PPM%</span>
+    </div>
+    
+    <div class="info-block">
+      <p>Humidity</p>
+      <span id="humidity">%HUMIDITY%</span>
+    </div>
+  </div>
+</body>
+
+<script>
+setInterval(function ( ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("temperature").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "/temperature", true);
+  xhttp.send();
+}, 1000 ) ;
+
+setInterval(function ( ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("humidity").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "/humidity", true);
+  xhttp.send();
+}, 1000 ) ;
+
+setInterval(function ( ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("ppm").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "/ppm", true);
+  xhttp.send();
+}, 1000 ) ;
+
+</script>
+</html>
